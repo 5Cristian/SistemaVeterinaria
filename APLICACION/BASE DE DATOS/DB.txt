@@ -1,0 +1,28 @@
+
+create database if not exists veterinaria;
+
+use veterinaria;
+
+reate table if not exists paciente(
+id_paciente INT auto_increment NOT NULL,
+nombre_paciente VARCHAR (45) NOT NULL,
+raza VARCHAR(45) NOT NULL,
+fecha_nacimiento DATE,
+nombre_dueno VARCHAR(45) NOT NULL,
+apellido_dueno VARCHAR (45) NOT NULL,
+telefono INT,
+direccion VARCHAR(30) default null,
+primary key(id_paciente)
+)ENGINE=INNODB;
+
+create table if not exists cita(
+id_cita INT auto_increment NOT NULL,
+id_paciente INT NOT NULL,
+fecha_cita DATE,
+hora_cita TIME,
+motivo_cita VARCHAR(100),
+primary key(id_cita),
+CONSTRAINT fkpaciente
+FOREIGN KEY(id_paciente)
+REFERENCES paciente(id_paciente)
+)ENGINE=INNODB;
